@@ -1,0 +1,40 @@
+spring:
+  application:
+    name: TrackIt-ms
+  boot:
+    admin:
+      client:
+        instance:
+          metadata:
+            user:
+              name: admin
+              password: admin
+        url: "http://localhost:8080"
+        username: admin
+        password: admin
+      routes:
+        endpoints: env, metrics, trace, jolokia, info, configprops
+  datasource:
+    url: jdbc:mysql://localhost:3306/trackit
+    username: root
+    password: password
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  jpa:
+    hibernate:
+      ddl-auto: none
+      naming:
+        implicit-strategy: org.hibernate.boot.model.naming.ImplicitNamingStrategyLegacyJpaImpl
+        physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
+    show-sql: false
+logging:
+  level:
+    org.springframework.security: DEBUG
+# Enable all Actuator endpoints
+management:
+  endpoint:
+    health:
+      show-details: always
+  endpoints:
+    web:
+      exposure:
+        include: '*'
